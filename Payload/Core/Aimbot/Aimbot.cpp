@@ -69,10 +69,10 @@ namespace RhinoCheats
 					if (WeaponIsAkimbo(GetViewmodelWeapon(&CG->PlayerState)))
 					{
 						if (AimState.bAkimbo)
-							usercmd->iButtons |= BUTTON_FIRELEFT;
+							usercmd->iButtons |= (IsGamePadEnabled() ? BUTTON_FIRERIGHT : BUTTON_FIRELEFT);
 
 						else
-							usercmd->iButtons |= BUTTON_FIRERIGHT;
+							usercmd->iButtons |= (IsGamePadEnabled() ? BUTTON_FIRELEFT : BUTTON_FIRERIGHT);
 					}
 
 					else

@@ -49,6 +49,8 @@
 #define VectorCopy(a,b) ((b)[0]=(a)[0],(b)[1]=(a)[1],(b)[2]=(a)[2])
 #define VectorAdd(a,b,c) ((c)[0]=(a)[0]+(b)[0],(c)[1]=(a)[1]+(b)[1],(c)[2]=(a)[2]+(b)[2])
 #define VectorSubtract(a,b,c) ((c)[0]=(a)[0]-(b)[0],(c)[1]=(a)[1]-(b)[1],(c)[2]=(a)[2]-(b)[2])
+#define VectorMultiply(a,b,c) ((c)[0]=(a)[0]*(b)[0],(c)[1]=(a)[1]*(b)[1],(c)[2]=(a)[2]*(b)[2])
+#define VectorDivide(a,b,c) ((c)[0]=(a)[0]/(b)[0],(c)[1]=(a)[1]/(b)[1],(c)[2]=(a)[2]/(b)[2])
 #define	VectorScale(a,b,c) ((c)[0]=(a)[0]*(b),(c)[1]=(a)[1]*(b),(c)[2]=(a)[2]*(b))
 #define	VectorMA(a,b,c,d) ((d)[0]=(a)[0]+(c)[0]*(b),(d)[1]=(a)[1]+(c)[1]*(b),(d)[2]=(a)[2]+(c)[2]*(b))
 #define VectorAverage(a,b,c) ((c)[0]=((a)[0]+(b)[0])/2.0f,(c)[1]=((a)[1]+(b)[1])/2.0f,(c)[2]=((a)[2]+(b)[2])/2.0f)
@@ -117,6 +119,7 @@
 #define OFF_ANGLEVECTORS 0x1404E39E0
 #define OFF_VECTORNORMALIZE 0x140147FE0
 #define OFF_EXECUTEKEY 0x1402BF0E0
+#define OFF_ISGAMEPADENABLED 0x1402C0DB0
 #define OFF_SETZOOMSTATE 0x1402B9D70
 #define OFF_CBULLETTRACE 0x1402A6EB0
 #define OFF_GBULLETTRACE 0x140378370
@@ -479,9 +482,8 @@ namespace RhinoCheats
 		{
 			bool bValue;
 			int iValue;
-			DWORD dwValue;
 			float flValue;
-			LPSTR szValue;
+			DWORD dwValue;
 			ImVec4 cValue;
 		} Current, Latched, Reset;
 
@@ -1224,6 +1226,13 @@ namespace RhinoCheats
 	inline void ExecuteKey(DWORD keyindex)
 	{
 		return VariadicCall<void>(OFF_EXECUTEKEY, 0, keyindex, 1, 0);
+	}
+	/*
+	//=====================================================================================
+	*/
+	inline bool IsGamePadEnabled()
+	{
+		return VariadicCall<bool>(OFF_ISGAMEPADENABLED);
 	}
 	/*
 	//=====================================================================================

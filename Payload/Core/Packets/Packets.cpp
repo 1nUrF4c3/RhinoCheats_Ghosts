@@ -29,10 +29,10 @@ namespace RhinoCheats
 		}
 
 		if (_profiler.gSilentAim->Custom.bValue)
-			_removals.SpreadCompensationSilentAim(oldcmd, WeaponIsAkimbo(GetViewmodelWeapon(&CG->PlayerState)) && oldcmd->iButtons & BUTTON_FIRELEFT);
+			_removals.SpreadCompensationSilentAim(oldcmd, WeaponIsAkimbo(GetViewmodelWeapon(&CG->PlayerState)) && oldcmd->iButtons & (IsGamePadEnabled() ? BUTTON_FIRERIGHT : BUTTON_FIRELEFT));
 
 		else
-			_removals.SpreadCompensationStandardAim(oldcmd, WeaponIsAkimbo(GetViewmodelWeapon(&CG->PlayerState)) && oldcmd->iButtons & BUTTON_FIRELEFT);
+			_removals.SpreadCompensationStandardAim(oldcmd, WeaponIsAkimbo(GetViewmodelWeapon(&CG->PlayerState)) && oldcmd->iButtons & (IsGamePadEnabled() ? BUTTON_FIRERIGHT : BUTTON_FIRELEFT));
 	}
 }
 
