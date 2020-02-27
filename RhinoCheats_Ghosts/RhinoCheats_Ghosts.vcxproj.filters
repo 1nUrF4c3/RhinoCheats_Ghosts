@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Interface\MainDlg.cpp">
+      <Filter>Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Interface\Routines.cpp">
+      <Filter>Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="WinMain.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Resources\Resource.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface\MainDlg.h">
+      <Filter>Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface\WinAPI\Button.hpp">
+      <Filter>Interface\WinAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface\WinAPI\Control.hpp">
+      <Filter>Interface\WinAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface\WinAPI\Dialog.hpp">
+      <Filter>Interface\WinAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface\WinAPI\Message.hpp">
+      <Filter>Interface\WinAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface\WinAPI\StatusBar.hpp">
+      <Filter>Interface\WinAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface\WinAPI\StdAfx.hpp">
+      <Filter>Interface\WinAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface\WinAPI\Thunk.hpp">
+      <Filter>Interface\WinAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface\WinAPI\Window.hpp">
+      <Filter>Interface\WinAPI</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{2a250143-7d66-4ddd-839e-68954ed39b53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface">
+      <UniqueIdentifier>{89b57fe3-e642-4b80-8d06-276441008278}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interface\WinAPI">
+      <UniqueIdentifier>{18e3459d-7859-4cd2-8138-94859fbbb5ee}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\Resource.ico">
+      <Filter>Resources</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resources\Resource.rc">
+      <Filter>Resources</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\x64\Release\Cheat.dll">
+      <Filter>Resources</Filter>
+    </None>
+  </ItemGroup>
+</Project>

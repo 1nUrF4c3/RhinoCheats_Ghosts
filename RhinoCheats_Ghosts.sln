@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2050
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RhinoCheats_Ghosts", "RhinoCheats_Ghosts\RhinoCheats_Ghosts.vcxproj", "{35368151-0A19-49EC-8F4A-26E1DD30558A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{41507E06-1D1E-4743-AEEA-35E02D0D8504} = {41507E06-1D1E-4743-AEEA-35E02D0D8504}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BlackBone", "BlackBone\src\BlackBone\BlackBone.vcxproj", "{A2C53563-46F5-4D87-903F-3F1F2FDB2DEB}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Payload", "Payload\Payload.vcxproj", "{41507E06-1D1E-4743-AEEA-35E02D0D8504}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{35368151-0A19-49EC-8F4A-26E1DD30558A}.Release|x64.ActiveCfg = Release|x64
+		{35368151-0A19-49EC-8F4A-26E1DD30558A}.Release|x64.Build.0 = Release|x64
+		{A2C53563-46F5-4D87-903F-3F1F2FDB2DEB}.Release|x64.ActiveCfg = Release|x64
+		{A2C53563-46F5-4D87-903F-3F1F2FDB2DEB}.Release|x64.Build.0 = Release|x64
+		{41507E06-1D1E-4743-AEEA-35E02D0D8504}.Release|x64.ActiveCfg = Release|x64
+		{41507E06-1D1E-4743-AEEA-35E02D0D8504}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1D2CC0DA-D03E-4137-A8FD-1C28DCD2245E}
+	EndGlobalSection
+EndGlobal
