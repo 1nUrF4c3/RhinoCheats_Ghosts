@@ -20,7 +20,7 @@ namespace RhinoCheats
 			_removals.RecoilCompensation();
 		}
 
-		_host.PlayerModThread();
+		_host.PlayerMods();
 	}
 	/*
 	//=====================================================================================
