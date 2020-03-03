@@ -12,7 +12,7 @@ namespace RhinoCheats
 	{
 	public:
 
-		void WritePacket(sUserCmd* usercmd);
+		void WritePacket(sUserCmd* currentcmd);
 		void PredictPlayerState(sUserCmd* oldcmd, sUserCmd* newcmd);
 	} extern _packets;
 }

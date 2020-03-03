@@ -8,9 +8,9 @@ namespace RhinoCheats
 {
 	cPackets _packets;
 
-	void cPackets::WritePacket(sUserCmd* usercmd)
+	void cPackets::WritePacket(sUserCmd* currentcmd)
 	{
-		_antiAim.AntiAim(usercmd);
+		_antiAim.AntiAim(currentcmd);
 	}
 	/*
 	//=====================================================================================
