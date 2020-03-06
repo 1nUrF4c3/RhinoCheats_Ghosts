@@ -33,6 +33,7 @@ namespace RhinoCheats
 			vCommands.push_back("quit");
 
 			vCommands.push_back("rc_name");
+			vCommands.push_back("rc_namespam");
 			vCommands.push_back("rc_end");
 			vCommands.push_back("rc_crash");
 			vCommands.push_back("rc_minimap");
@@ -48,6 +49,8 @@ namespace RhinoCheats
 			vCommands.push_back("rc_resetstats");
 			vCommands.push_back("rc_hostdvar");
 			vCommands.push_back("rc_message");
+			vCommands.push_back("rc_chatspam");
+			vCommands.push_back("rc_killspam");
 			vCommands.push_back("rc_spawnbot");
 			vCommands.push_back("rc_infinite");
 			vCommands.push_back("rc_memread");
@@ -121,25 +124,28 @@ namespace RhinoCheats
 		if (ImGui::Button("Help", ImVec2(50, 0)))
 		{
 			AddLog("1. rc_name <name>\n\t\tChange your name.");
-			AddLog("2. rc_end\n\t\tForce the current match to end.");
-			AddLog("3. rc_crash\n\t\tCrash everyone in the lobby except yourself.");
-			AddLog("4. rc_minimap <on|off>\n\t\tEnable/disable enemy blips on the minimap.");
-			AddLog("5. rc_thirdperson <on|off>\n\t\tEnable/disable thirdperson view.");
-			AddLog("6. rc_hostawall <on|off>\n\t\tEnable/disable host autowall (as host).");
-			AddLog("7. rc_rapidfire <on|off>\n\t\tEnable/disable rapidfire weapon rate (as host).");
-			AddLog("8. rc_superjump <on|off>\n\t\tEnable/disable super high jump (as host).");
-			AddLog("9. rc_masskill <off|axis|allies|all>\n\t\tEnable/disable player masskill (as host).");
-			AddLog("10. rc_experience <all|index> <max|experience>\n\t\tSet your experience.");
-			AddLog("11. rc_prestige <max|number>\n\t\tSet your prestige.");
-			AddLog("12. rc_squadpoints <max|squadpoints>\n\t\tSet your squadpoints.");
-			AddLog("13. rc_unlockall\n\t\tUnlock everything in the game.");
-			AddLog("14. rc_resetstats\n\t\tCompletely erase your save game.");
-			AddLog("15. rc_hostdvar <dvar> <value>\n\t\tSet DVAR value for all clients (as host).");
-			AddLog("16. rc_message <self|index> <all|index> <lobby|team|private> <message>\n\t\tSend a message (as host).");
-			AddLog("17. rc_spawnbot <max|number>\n\t\tSpawn bots into the current match (as host).");
-			AddLog("18. rc_infinite\n\t\tSet scorelimit and timelimit to unlimited (as host).");
-			AddLog("19. rc_memread <address> <byte|word|dword|qword>\n\t\tRead value of the specified type from memory.");
-			AddLog("20. rc_memwrite <address> <byte|word|dword|qword> <value>\n\t\tWrite value of the specified type to memory.");
+			AddLog("2. rc_namespam <on|off>\n\t\tEnable/disable random name spam.");
+			AddLog("3. rc_end\n\t\tForce the current match to end.");
+			AddLog("4. rc_crash\n\t\tCrash everyone in the lobby except yourself.");
+			AddLog("5. rc_minimap <on|off>\n\t\tEnable/disable enemy blips on the minimap.");
+			AddLog("6. rc_thirdperson <on|off>\n\t\tEnable/disable thirdperson view.");
+			AddLog("7. rc_hostawall <on|off>\n\t\tEnable/disable host autowall (as host).");
+			AddLog("8. rc_rapidfire <on|off>\n\t\tEnable/disable rapidfire weapon rate (as host).");
+			AddLog("9. rc_superjump <on|off>\n\t\tEnable/disable super high jump (as host).");
+			AddLog("10. rc_masskill <off|axis|allies|all>\n\t\tEnable/disable player masskill (as host).");
+			AddLog("11. rc_experience <all|index> <max|experience>\n\t\tSet your experience.");
+			AddLog("12. rc_prestige <max|number>\n\t\tSet your prestige.");
+			AddLog("13. rc_squadpoints <max|squadpoints>\n\t\tSet your squadpoints.");
+			AddLog("14. rc_unlockall\n\t\tUnlock everything in the game.");
+			AddLog("15. rc_resetstats\n\t\tCompletely erase your save game.");
+			AddLog("16. rc_hostdvar <dvar> <value>\n\t\tSet DVAR value for all clients (as host).");
+			AddLog("17. rc_message <self|index> <all|index> <lobby|team|private> <message>\n\t\tSend a message (as host).");
+			AddLog("18. rc_chatspam <on|off> <message>\n\t\tEnable/disable custom chatspam message.");
+			AddLog("19. rc_killspam <on|off> <message>\n\t\tEnable/disable custom killspam message.");
+			AddLog("20. rc_spawnbot <max|number>\n\t\tSpawn bots into the current match (as host).");
+			AddLog("21. rc_infinite\n\t\tSet scorelimit and timelimit to unlimited (as host).");
+			AddLog("22. rc_memread <address> <byte|word|dword|qword>\n\t\tRead value of the specified type from memory.");
+			AddLog("23. rc_memwrite <address> <byte|word|dword|qword> <value>\n\t\tWrite value of the specified type to memory.");
 
 			bWriteLog = true;
 		} ImGui::SameLine();
@@ -318,7 +324,7 @@ namespace RhinoCheats
 				AddLog("%s executing.", acut::ToLower(CmdLine.szCmdName).c_str());
 
 				strncpy_s((LPSTR)(*(DWORD_PTR*)OFF_STEAMAPI + OFF_STEAMNAME), strlen(szUsername) + 1, szUsername, 32);
-				Cbuf_AddText(VariadicText("name %s\n", szUsername));
+				Cbuf_AddText(VariadicText("name \"%s\"\n", szUsername));
 
 				AddLog("Name has been changed to \"%s.\"", szUsername);
 				AddLog("%s executed.", acut::ToLower(CmdLine.szCmdName).c_str());
@@ -327,6 +333,42 @@ namespace RhinoCheats
 			else
 			{
 				AddLog("[ERROR] Null argument(s).");
+			}
+		}
+
+		else if (!Stricmp(CmdLine.szCmdName, "rc_namespam"))
+		{
+			if (CmdLine.iArgNum > 0)
+			{
+				if (!Stricmp(CmdLine.szCmdArgs[0], "on"))
+				{
+					AddLog("%s executing.", acut::ToLower(CmdLine.szCmdName).c_str());
+
+					_profiler.gNameSpam->Custom.bValue = true;
+
+					AddLog("Spamming random names has been enabled.");
+					AddLog("%s executed.", acut::ToLower(CmdLine.szCmdName).c_str());
+				}
+
+				else if (!Stricmp(CmdLine.szCmdArgs[0], "off"))
+				{
+					AddLog("%s executing.", acut::ToLower(CmdLine.szCmdName).c_str());
+
+					_profiler.gNameSpam->Custom.bValue = false;
+
+					AddLog("Spamming random names has been disabled.");
+					AddLog("%s executed.", acut::ToLower(CmdLine.szCmdName).c_str());
+				}
+
+				else
+				{
+					AddLog("[ERROR] Invalid argument(s).");
+				}
+			}
+
+			else
+			{
+				AddLog("[ERROR] Missing argument(s).");
 			}
 		}
 
@@ -1134,6 +1176,112 @@ namespace RhinoCheats
 					{
 						AddLog("[ERROR] Invalid argument(s).");
 					}
+				}
+
+				else
+				{
+					AddLog("[ERROR] Invalid argument(s).");
+				}
+			}
+
+			else
+			{
+				AddLog("[ERROR] Missing argument(s).");
+			}
+		}
+
+		else if (!Stricmp(CmdLine.szCmdName, "rc_chatspam"))
+		{
+			if (CmdLine.iArgNum > 0)
+			{
+				if (!Stricmp(CmdLine.szCmdArgs[0], "on"))
+				{
+					char szArgBuff[512] = { NULL };
+
+					for (int i = 1; i < CmdLine.iArgNum; i++)
+						strcat_s(szArgBuff, VariadicText(i == CmdLine.iArgNum - 1 ? "%s" : "%s ", CmdLine.szCmdArgs[i]).c_str());
+
+					LPSTR szChatSpam = strtok(szArgBuff, "\n");
+
+					if (szChatSpam)
+					{
+						AddLog("%s executing.", acut::ToLower(CmdLine.szCmdName).c_str());
+
+						_profiler.gChatSpamMessage->Custom.szValue = Strdup(strtok(szArgBuff, "\n"));
+						_profiler.gChatSpam->Custom.bValue = true;
+
+						AddLog("Custom chatspam message has been enabled.");
+						AddLog("%s executed.", acut::ToLower(CmdLine.szCmdName).c_str());
+					}
+
+					else
+					{
+						AddLog("[ERROR] Null argument(s).");
+					}
+				}
+
+				else if (!Stricmp(CmdLine.szCmdArgs[0], "off"))
+				{
+					AddLog("%s executing.", acut::ToLower(CmdLine.szCmdName).c_str());
+
+					_profiler.gChatSpamMessage->Custom.szValue = Strdup("");
+					_profiler.gChatSpam->Custom.bValue = false;
+
+					AddLog("Custom chatspam message has been disabled.");
+					AddLog("%s executed.", acut::ToLower(CmdLine.szCmdName).c_str());
+				}
+
+				else
+				{
+					AddLog("[ERROR] Invalid argument(s).");
+				}
+			}
+
+			else
+			{
+				AddLog("[ERROR] Missing argument(s).");
+			}
+		}
+
+		else if (!Stricmp(CmdLine.szCmdName, "rc_killspam"))
+		{
+			if (CmdLine.iArgNum > 0)
+			{
+				if (!Stricmp(CmdLine.szCmdArgs[0], "on"))
+				{
+					char szArgBuff[512] = { NULL };
+
+					for (int i = 1; i < CmdLine.iArgNum; i++)
+						strcat_s(szArgBuff, VariadicText(i == CmdLine.iArgNum - 1 ? "%s" : "%s ", CmdLine.szCmdArgs[i]).c_str());
+
+					LPSTR szKillSpam = strtok(szArgBuff, "\n");
+
+					if (szKillSpam)
+					{
+						AddLog("%s executing.", acut::ToLower(CmdLine.szCmdName).c_str());
+
+						_profiler.gKillSpamMessage->Custom.szValue = Strdup(strtok(szArgBuff, "\n"));
+						_profiler.gKillSpam->Custom.bValue = true;
+
+						AddLog("Custom killspam message has been enabled.");
+						AddLog("%s executed.", acut::ToLower(CmdLine.szCmdName).c_str());
+					}
+
+					else
+					{
+						AddLog("[ERROR] Null argument(s).");
+					}
+				}
+
+				else if (!Stricmp(CmdLine.szCmdArgs[0], "off"))
+				{
+					AddLog("%s executing.", acut::ToLower(CmdLine.szCmdName).c_str());
+
+					_profiler.gKillSpamMessage->Custom.szValue = Strdup("");
+					_profiler.gKillSpam->Custom.bValue = false;
+
+					AddLog("Custom killspam message has been disabled.");
+					AddLog("%s executed.", acut::ToLower(CmdLine.szCmdName).c_str());
 				}
 
 				else
