@@ -48,7 +48,7 @@ namespace RhinoCheats
 			struct sHostMenu
 			{
 				char szKickReason[64] = { NULL };
-				bool bShowWindow = false, bWriteLog = false, bSuperJump = false;
+				bool bShowWindow = false, bWriteLog = false;
 
 				struct sPlayerMod
 				{
