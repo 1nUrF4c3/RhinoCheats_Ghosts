@@ -15,6 +15,7 @@ namespace RhinoCheats
 		Vector3 vAntiAimAngles;
 
 		void AntiAim(sUserCmd* usercmd);
+		bool IsAntiAiming();
 	} extern _antiAim;
 }
 
