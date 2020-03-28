@@ -83,7 +83,7 @@ namespace RhinoCheats
 	*/
 	void cHooks::CalcEntityLerpPositions(int localnum, sCEntity* entity)
 	{
-		if (LocalClientIsInGame() && _profiler.gAntiAim->Custom.bValue > cProfiler::ANTIAIM_OFF)
+		if (LocalClientIsInGame() && _profiler.gAntiAim->Custom.iValue > cProfiler::ANTIAIM_OFF)
 		{
 			if (entity->NextEntityState.iEntityNum == CG->PlayerState.iClientNum)
 			{
