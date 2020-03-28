@@ -10,6 +10,8 @@ namespace RhinoCheats
 
 	void cHooks::Refresh(int localnum)
 	{
+		dwThreadLocalStoragePointer = Sys_GetValue(3);
+
 		if (LocalClientIsInGame() && CG->PlayerState.iOtherFlags & 0x4000)
 		{
 			_targetList.GetInformation();
@@ -37,7 +39,7 @@ namespace RhinoCheats
 	/*
 	//=====================================================================================
 	*/
-	void cHooks::PredictPlayerState(int localnum)
+	void cHooks::CreateNewCommands(int localnum)
 	{
 		if (LocalClientIsInGame() && CG->PlayerState.iOtherFlags & 0x4000)
 		{
@@ -50,7 +52,7 @@ namespace RhinoCheats
 			*pOldCmd = *pNewCmd;
 			--pOldCmd->iServerTime;
 
-			_packets.PredictPlayerState(pOldCmd, pNewCmd);
+			_packets.CreateNewCommands(pOldCmd, pNewCmd);
 		}
 	}
 	/*
@@ -74,6 +76,17 @@ namespace RhinoCheats
 				AngleVectors(_profiler.gSilentAim->Custom.bValue && _aimBot.AimState.bIsAutoAiming ? vAngles : WeaponIsVehicle(GetViewmodelWeapon(&CG->PlayerState)) ? CG->vRefDefViewAngles : IsThirdPersonMode(&CG->PlayerState) ? CG->vThirdPersonViewAngles : CG->vWeaponAngles, vForward, vRight, vUp);
 				BulletEndPosition(&iSeed, _removals.GetWeaponSpread() * _profiler.gSpreadFactor->Custom.flValue, bp->vStart, bp->vEnd, bp->vDir, vForward, vRight, vUp);
 			}
+		}
+	}
+	/*
+	//=====================================================================================
+	*/
+	void cHooks::CalcEntityLerpPositions(int localnum, sCEntity* entity)
+	{
+		if (entity->NextEntityState.iEntityNum == CG->PlayerState.iClientNum)
+		{
+			CharacterInfo[entity->NextEntityState.iEntityNum].vAngles[0] = _antiAim.vAntiAimAngles[0] + CG->vRefDefViewAngles[0];
+			entity->vAngles[1] = _antiAim.vAntiAimAngles[1] + CG->vRefDefViewAngles[1];
 		}
 	}
 	/*
@@ -158,6 +171,24 @@ namespace RhinoCheats
 	{
 		if (LocalClientIsInGame())
 			_host.MassKill();
+	}
+	/*
+	//=====================================================================================
+	*/
+	LONG cHooks::VectoredExceptionHandler(_In_ LPEXCEPTION_POINTERS ExceptionInfo)
+	{
+		if (ExceptionInfo->ExceptionRecord->ExceptionCode == EXCEPTION_ACCESS_VIOLATION)
+		{
+			if (ExceptionInfo->ContextRecord->Rip == OFF_SYSGETVALUEEXCEPTION)
+			{
+				ExceptionInfo->ContextRecord->Rax = dwThreadLocalStoragePointer;
+				ExceptionInfo->ContextRecord->Rip += 0x4;
+
+				return EXCEPTION_CONTINUE_EXECUTION;
+			}
+		}
+
+		return EXCEPTION_CONTINUE_SEARCH;
 	}
 }
 

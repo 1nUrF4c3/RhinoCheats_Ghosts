@@ -18,7 +18,10 @@
 #define EF_CROUCH 0x4
 #define EF_PRONE 0x8
 #define EF_MANTLE 0x20000
+#define EF_DEAD 0x40000
 #define EF_ZOOM 0x80000
+#define EF_FIRE 0x800000
+#define EF_STREAK 0x10000000
 #define TF_NONE 0x0
 #define TF_SHADOW 0x3
 #define WF_AKIMBO 0x20000
@@ -65,6 +68,8 @@
 #define OFF_HUDSAYPOSITION_EXCEPTION 0x14025C40B
 #define OFF_PACKETDUPLICATION_DVAR 0x141E04AA8
 #define OFF_PACKETDUPLICATION_EXCEPTION 0x1402C1FB2
+#define OFF_SYSGETVALUE 0x1404237D0
+#define OFF_SYSGETVALUEEXCEPTION 0x1404237F0
 #define OFF_WINDOWHANDLE 0x147AD2640
 #define OFF_SWAPCHAIN 0x1480B1D70
 #define OFF_REFRESH 0x14025CC50
@@ -72,6 +77,7 @@
 #define OFF_PREDICTPLAYERSTATE 0x1402830B0
 #define OFF_CREATENEWCOMMANDS 0x1402BEE80
 #define OFF_BULLETFIREPENETRATE 0x1402ACBF0
+#define OFF_CALCENTITYLERPPOSITIONS 0x140262F60
 #define OFF_OBITUARY 0x14026A010
 #define OFF_ADDCMDDRAWTEXT 0x140601070
 #define OFF_CLIENTFRAME 0x140382890
@@ -1075,7 +1081,7 @@ namespace RhinoCheats
 	static MODULEINFO hGameOverlayRenderer64 = GetModuleInfo("GameOverlayRenderer64.dll");
 
 	static DWORD_PTR dwPresent = (hGameOverlayRenderer64.lpBaseOfDll && hGameOverlayRenderer64.SizeOfImage) ?
-		ReadPointer(FindPattern((DWORD_PTR)hGameOverlayRenderer64.lpBaseOfDll, (DWORD_PTR)hGameOverlayRenderer64.SizeOfImage, "\x48\x89\x05\x00\x00\x00\x00\x48\x8B\x4F\x50", "xxx????xxxx"), 0x3) :
+		ReadPointer(FindPattern((DWORD_PTR)hGameOverlayRenderer64.lpBaseOfDll, (DWORD_PTR)hGameOverlayRenderer64.SizeOfImage, "\x41\x5E\x48\xFF\x25\x00\x00\x00\x00\x48\x89\x5C\x24\x00", "xxxxx????xxxx?"), 0x5) :
 		(**(DWORD_PTR**)OFF_SWAPCHAIN + sizeof(DWORD_PTR) * 0x8);
 	/*
 	//=====================================================================================
@@ -1107,6 +1113,13 @@ namespace RhinoCheats
 	inline void Cbuf_AddText(std::string command)
 	{
 		return VariadicCall<void>(OFF_CBUFADDTEXT, 0, command.c_str());
+	}
+	/*
+	//=====================================================================================
+	*/
+	inline QWORD Sys_GetValue(int value)
+	{
+		return VariadicCall<QWORD>(OFF_SYSGETVALUE, value);
 	}
 	/*
 	//=====================================================================================
