@@ -7,7 +7,7 @@
 
 //=====================================================================================
 
-namespace NeoGenesys
+namespace RhinoCheats
 {
 	class cProfiler
 	{

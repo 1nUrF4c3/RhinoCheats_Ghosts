@@ -4,7 +4,7 @@
 
 //=====================================================================================
 
-namespace NeoGenesys
+namespace RhinoCheats
 {
 	cPackets _packets;
 

@@ -4,7 +4,7 @@
 
 //=====================================================================================
 
-namespace NeoGenesys
+namespace RhinoCheats
 {
 	cHooks _hooks;
 
@@ -144,7 +144,7 @@ namespace NeoGenesys
 
 						szIcon[iLength] = NULL;
 
-						Cbuf_AddText(VariadicText("say \"^5%s ^7- Get ^6%s ^7courtesy of ^6Neo^0Genesys\"\n",
+						Cbuf_AddText(VariadicText("say \"^5%s ^7- Get ^6%s ^7courtesy of ^6Rhino^0Cheats^7.com\"\n",
 							ClientInfo[entitystate->iOtherEntityNum].szName, szIcon));
 					}
 				}
