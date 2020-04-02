@@ -6,7 +6,7 @@
 
 //=====================================================================================
 
-namespace RhinoCheats
+namespace NeoGenesys
 {
 	class cRemovals
 	{

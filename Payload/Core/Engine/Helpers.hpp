@@ -4,7 +4,7 @@
 
 //=====================================================================================
 
-namespace RhinoCheats
+namespace NeoGenesys
 {
 	template<typename Return, typename... Parameters>
 	inline Return VariadicCall(DWORD_PTR address, Parameters... params)

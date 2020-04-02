@@ -19,7 +19,7 @@ extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hwnd, UINT msg
 
 //=====================================================================================
 
-namespace RhinoCheats
+namespace NeoGenesys
 {
 	class cMainGUI
 	{
@@ -35,7 +35,7 @@ namespace RhinoCheats
 		struct sMenu
 		{
 			char szProfilePath[1024] = { NULL };
-			bool bShowWindow = true, bShowConsole = false, bStyleChanged = false, bWriteLog = false;
+			bool bShowWindow = true, bShowConsole = false, bShowMemoryEditor = false, bStyleChanged = false, bWriteLog = false;
 
 			std::string szIniFileName, szLogFileName;
 
@@ -85,6 +85,7 @@ namespace RhinoCheats
 			} HostMenu;
 
 			ImGuiFs::Dialog SaveDialog, LoadDialog;
+			MemoryEditor MemEdit;
 		} Menu;
 
 		struct sVirtualKeys

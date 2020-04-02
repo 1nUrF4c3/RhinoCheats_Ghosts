@@ -4,7 +4,7 @@
 
 //=====================================================================================
 
-namespace RhinoCheats
+namespace NeoGenesys
 {
 	cConsole _console;
 
@@ -32,31 +32,29 @@ namespace RhinoCheats
 			vCommands.push_back("history");
 			vCommands.push_back("quit");
 
-			vCommands.push_back("rc_name");
-			vCommands.push_back("rc_namespam");
-			vCommands.push_back("rc_end");
-			vCommands.push_back("rc_crash");
-			vCommands.push_back("rc_minimap");
-			vCommands.push_back("rc_thirdperson");
-			vCommands.push_back("rc_hostawall");
-			vCommands.push_back("rc_rapidfire");
-			vCommands.push_back("rc_superjump");
-			vCommands.push_back("rc_masskill");
-			vCommands.push_back("rc_bhop");
-			vCommands.push_back("rc_tbag");
-			vCommands.push_back("rc_experience");
-			vCommands.push_back("rc_prestige");
-			vCommands.push_back("rc_squadpoints");
-			vCommands.push_back("rc_unlockall");
-			vCommands.push_back("rc_resetstats");
-			vCommands.push_back("rc_hostdvar");
-			vCommands.push_back("rc_message");
-			vCommands.push_back("rc_chatspam");
-			vCommands.push_back("rc_killspam");
-			vCommands.push_back("rc_spawnbot");
-			vCommands.push_back("rc_infinite");
-			vCommands.push_back("rc_memread");
-			vCommands.push_back("rc_memwrite");
+			vCommands.push_back("neo_name");
+			vCommands.push_back("neo_namespam");
+			vCommands.push_back("neo_end");
+			vCommands.push_back("neo_crash");
+			vCommands.push_back("neo_minimap");
+			vCommands.push_back("neo_thirdperson");
+			vCommands.push_back("neo_hostawall");
+			vCommands.push_back("neo_rapidfire");
+			vCommands.push_back("neo_superjump");
+			vCommands.push_back("neo_masskill");
+			vCommands.push_back("neo_bhop");
+			vCommands.push_back("neo_tbag");
+			vCommands.push_back("neo_experience");
+			vCommands.push_back("neo_prestige");
+			vCommands.push_back("neo_squadpoints");
+			vCommands.push_back("neo_unlockall");
+			vCommands.push_back("neo_resetstats");
+			vCommands.push_back("neo_hostdvar");
+			vCommands.push_back("neo_message");
+			vCommands.push_back("neo_chatspam");
+			vCommands.push_back("neo_killspam");
+			vCommands.push_back("neo_spawnbot");
+			vCommands.push_back("neo_infinite");
 
 			AddLog("Ready.");
 
@@ -125,31 +123,29 @@ namespace RhinoCheats
 
 		if (ImGui::Button("Help", ImVec2(50, 0)))
 		{
-			AddLog("1. rc_name <name>\n\t\tChange your name.");
-			AddLog("2. rc_namespam <on|off>\n\t\tEnable/disable random name spam.");
-			AddLog("3. rc_end\n\t\tForce the current match to end.");
-			AddLog("4. rc_crash\n\t\tCrash everyone in the lobby except yourself.");
-			AddLog("5. rc_minimap <on|off>\n\t\tEnable/disable enemy blips on the minimap.");
-			AddLog("6. rc_thirdperson <on|off>\n\t\tEnable/disable thirdperson view.");
-			AddLog("7. rc_hostawall <on|off>\n\t\tEnable/disable host autowall (as host).");
-			AddLog("8. rc_rapidfire <on|off>\n\t\tEnable/disable rapidfire weapon rate (as host).");
-			AddLog("9. rc_superjump <on|off>\n\t\tEnable/disable super high jump (as host).");
-			AddLog("10. rc_masskill <off|axis|allies|all>\n\t\tEnable/disable player masskill (as host).");
-			AddLog("11. rc_bhop <on|off>\n\t\tEnable/disable auto bunny hop on jump.");
-			AddLog("12. rc_tbag <on|off> <message>\n\t\tEnable/disable auto tea bag on kill with optional message (as host).");
-			AddLog("13. rc_experience <all|index> <max|experience>\n\t\tSet your experience.");
-			AddLog("14. rc_prestige <max|number>\n\t\tSet your prestige.");
-			AddLog("15. rc_squadpoints <max|squadpoints>\n\t\tSet your squadpoints.");
-			AddLog("16. rc_unlockall\n\t\tUnlock everything in the game.");
-			AddLog("17. rc_resetstats\n\t\tCompletely erase your save game.");
-			AddLog("18. rc_hostdvar <dvar> <value>\n\t\tSet DVAR value for all clients (as host).");
-			AddLog("19. rc_message <self|index> <all|index> <lobby|team|private> <message>\n\t\tSend a message (as host).");
-			AddLog("20. rc_chatspam <on|off> <message>\n\t\tEnable/disable custom chatspam message.");
-			AddLog("21. rc_killspam <on|off> <message>\n\t\tEnable/disable custom killspam message.");
-			AddLog("22. rc_spawnbot <max|number>\n\t\tSpawn bots into the current match (as host).");
-			AddLog("23. rc_infinite\n\t\tSet scorelimit and timelimit to unlimited (as host).");
-			AddLog("24. rc_memread <address> <byte|word|dword|qword>\n\t\tRead value of the specified type from memory.");
-			AddLog("25. rc_memwrite <address> <byte|word|dword|qword> <value>\n\t\tWrite value of the specified type to memory.");
+			AddLog("1. neo_name <name>\n\t\tChange your name.");
+			AddLog("2. neo_namespam <on|off>\n\t\tEnable/disable random name spam.");
+			AddLog("3. neo_end\n\t\tForce the current match to end.");
+			AddLog("4. neo_crash\n\t\tCrash everyone in the lobby except yourself.");
+			AddLog("5. neo_minimap <on|off>\n\t\tEnable/disable enemy blips on the minimap.");
+			AddLog("6. neo_thirdperson <on|off>\n\t\tEnable/disable thirdperson view.");
+			AddLog("7. neo_hostawall <on|off>\n\t\tEnable/disable host autowall (as host).");
+			AddLog("8. neo_rapidfire <on|off>\n\t\tEnable/disable rapidfire weapon rate (as host).");
+			AddLog("9. neo_superjump <on|off>\n\t\tEnable/disable super high jump (as host).");
+			AddLog("10. neo_masskill <off|axis|allies|all>\n\t\tEnable/disable player masskill (as host).");
+			AddLog("11. neo_bhop <on|off>\n\t\tEnable/disable auto bunny hop on jump.");
+			AddLog("12. neo_tbag <on|off> <message>\n\t\tEnable/disable auto tea bag on kill with optional message (as host).");
+			AddLog("13. neo_experience <all|index> <max|experience>\n\t\tSet your experience.");
+			AddLog("14. neo_prestige <max|number>\n\t\tSet your prestige.");
+			AddLog("15. neo_squadpoints <max|squadpoints>\n\t\tSet your squadpoints.");
+			AddLog("16. neo_unlockall\n\t\tUnlock everything in the game.");
+			AddLog("17. neo_resetstats\n\t\tCompletely erase your save game.");
+			AddLog("18. neo_hostdvar <dvar> <value>\n\t\tSet DVAR value for all clients (as host).");
+			AddLog("19. neo_message <self|index> <all|index> <lobby|team|private> <message>\n\t\tSend a message (as host).");
+			AddLog("20. neo_chatspam <on|off> <message>\n\t\tEnable/disable custom chatspam message.");
+			AddLog("21. neo_killspam <on|off> <message>\n\t\tEnable/disable custom killspam message.");
+			AddLog("22. neo_spawnbot <max|number>\n\t\tSpawn bots into the current match (as host).");
+			AddLog("23. neo_infinite\n\t\tSet scorelimit and timelimit to unlimited (as host).");
 
 			bWriteLog = true;
 		} ImGui::SameLine();
@@ -314,7 +310,7 @@ namespace RhinoCheats
 			exit(EXIT_SUCCESS);
 		}
 
-		else if (!Stricmp(CmdLine.szCmdName, "rc_name"))
+		else if (!Stricmp(CmdLine.szCmdName, "neo_name"))
 		{
 			char szArgBuff[512] = { NULL };
 
@@ -340,7 +336,7 @@ namespace RhinoCheats
 			}
 		}
 
-		else if (!Stricmp(CmdLine.szCmdName, "rc_namespam"))
+		else if (!Stricmp(CmdLine.szCmdName, "neo_namespam"))
 		{
 			if (CmdLine.iArgNum > 0)
 			{
@@ -376,7 +372,7 @@ namespace RhinoCheats
 			}
 		}
 
-		else if (!Stricmp(CmdLine.szCmdName, "rc_end"))
+		else if (!Stricmp(CmdLine.szCmdName, "neo_end"))
 		{
 			AddLog("%s executing.", acut::ToLower(CmdLine.szCmdName).c_str());
 
@@ -386,7 +382,7 @@ namespace RhinoCheats
 			AddLog("%s executed.", acut::ToLower(CmdLine.szCmdName).c_str());
 		}
 
-		else if (!Stricmp(CmdLine.szCmdName, "rc_crash"))
+		else if (!Stricmp(CmdLine.szCmdName, "neo_crash"))
 		{
 			AddLog("%s executing.", acut::ToLower(CmdLine.szCmdName).c_str());
 
@@ -396,7 +392,7 @@ namespace RhinoCheats
 			AddLog("%s executed.", acut::ToLower(CmdLine.szCmdName).c_str());
 		}
 
-		else if (!Stricmp(CmdLine.szCmdName, "rc_minimap"))
+		else if (!Stricmp(CmdLine.szCmdName, "neo_minimap"))
 		{
 			if (CmdLine.iArgNum > 0)
 			{
@@ -432,7 +428,7 @@ namespace RhinoCheats
 			}
 		}
 
-		else if (!Stricmp(CmdLine.szCmdName, "rc_thirdperson"))
+		else if (!Stricmp(CmdLine.szCmdName, "neo_thirdperson"))
 		{
 			if (CmdLine.iArgNum > 0)
 			{
@@ -468,7 +464,7 @@ namespace RhinoCheats
 			}
 		}
 
-		else if (!Stricmp(CmdLine.szCmdName, "rc_hostawall"))
+		else if (!Stricmp(CmdLine.szCmdName, "neo_hostawall"))
 		{
 			if (CmdLine.iArgNum > 0)
 			{
@@ -506,7 +502,7 @@ namespace RhinoCheats
 			}
 		}
 
-		else if (!Stricmp(CmdLine.szCmdName, "rc_rapidfire"))
+		else if (!Stricmp(CmdLine.szCmdName, "neo_rapidfire"))
 		{
 			if (CmdLine.iArgNum > 0)
 			{
@@ -544,7 +540,7 @@ namespace RhinoCheats
 			}
 		}
 
-		else if (!Stricmp(CmdLine.szCmdName, "rc_superjump"))
+		else if (!Stricmp(CmdLine.szCmdName, "neo_superjump"))
 		{
 			if (CmdLine.iArgNum > 0)
 			{
@@ -580,7 +576,7 @@ namespace RhinoCheats
 			}
 		}
 
-		else if (!Stricmp(CmdLine.szCmdName, "rc_masskill"))
+		else if (!Stricmp(CmdLine.szCmdName, "neo_masskill"))
 		{
 			if (CmdLine.iArgNum > 0)
 			{
@@ -636,7 +632,7 @@ namespace RhinoCheats
 			}
 		}
 
-		else if (!Stricmp(CmdLine.szCmdName, "rc_bhop"))
+		else if (!Stricmp(CmdLine.szCmdName, "neo_bhop"))
 		{
 			if (CmdLine.iArgNum > 0)
 			{
@@ -672,7 +668,7 @@ namespace RhinoCheats
 			}
 		}
 
-		else if (!Stricmp(CmdLine.szCmdName, "rc_tbag"))
+		else if (!Stricmp(CmdLine.szCmdName, "neo_tbag"))
 		{
 			if (CmdLine.iArgNum > 0)
 			{
@@ -730,7 +726,7 @@ namespace RhinoCheats
 			}
 		}
 
-		else if (!Stricmp(CmdLine.szCmdName, "rc_experience"))
+		else if (!Stricmp(CmdLine.szCmdName, "neo_experience"))
 		{
 			if (CmdLine.iArgNum > 1)
 			{
@@ -804,7 +800,7 @@ namespace RhinoCheats
 			}
 		}
 
-		else if (!Stricmp(CmdLine.szCmdName, "rc_prestige"))
+		else if (!Stricmp(CmdLine.szCmdName, "neo_prestige"))
 		{
 			if (CmdLine.iArgNum > 0)
 			{
@@ -840,7 +836,7 @@ namespace RhinoCheats
 			}
 		}
 
-		else if (!Stricmp(CmdLine.szCmdName, "rc_squadpoints"))
+		else if (!Stricmp(CmdLine.szCmdName, "neo_squadpoints"))
 		{
 			if (CmdLine.iArgNum > 0)
 			{
@@ -876,7 +872,7 @@ namespace RhinoCheats
 			}
 		}
 
-		else if (!Stricmp(CmdLine.szCmdName, "rc_unlockall"))
+		else if (!Stricmp(CmdLine.szCmdName, "neo_unlockall"))
 		{
 			AddLog("%s executing.", acut::ToLower(CmdLine.szCmdName).c_str());
 
@@ -890,7 +886,7 @@ namespace RhinoCheats
 			AddLog("%s executed.", acut::ToLower(CmdLine.szCmdName).c_str());
 		}
 
-		else if (!Stricmp(CmdLine.szCmdName, "rc_resetstats"))
+		else if (!Stricmp(CmdLine.szCmdName, "neo_resetstats"))
 		{
 			AddLog("%s executing.", acut::ToLower(CmdLine.szCmdName).c_str());
 
@@ -900,7 +896,7 @@ namespace RhinoCheats
 			AddLog("%s executed.", acut::ToLower(CmdLine.szCmdName).c_str());
 		}
 
-		else if (!Stricmp(CmdLine.szCmdName, "rc_hostdvar"))
+		else if (!Stricmp(CmdLine.szCmdName, "neo_hostdvar"))
 		{
 			if (CmdLine.iArgNum > 1)
 			{
@@ -927,7 +923,7 @@ namespace RhinoCheats
 			}
 		}
 
-		else if (!Stricmp(CmdLine.szCmdName, "rc_message"))
+		else if (!Stricmp(CmdLine.szCmdName, "neo_message"))
 		{
 			if (CmdLine.iArgNum > 2)
 			{
@@ -1291,7 +1287,7 @@ namespace RhinoCheats
 			}
 		}
 
-		else if (!Stricmp(CmdLine.szCmdName, "rc_chatspam"))
+		else if (!Stricmp(CmdLine.szCmdName, "neo_chatspam"))
 		{
 			if (CmdLine.iArgNum > 0)
 			{
@@ -1344,7 +1340,7 @@ namespace RhinoCheats
 			}
 		}
 
-		else if (!Stricmp(CmdLine.szCmdName, "rc_killspam"))
+		else if (!Stricmp(CmdLine.szCmdName, "neo_killspam"))
 		{
 			if (CmdLine.iArgNum > 0)
 			{
@@ -1397,7 +1393,7 @@ namespace RhinoCheats
 			}
 		}
 
-		else if (!Stricmp(CmdLine.szCmdName, "rc_spawnbot"))
+		else if (!Stricmp(CmdLine.szCmdName, "neo_spawnbot"))
 		{
 			if (CmdLine.iArgNum > 0)
 			{
@@ -1471,7 +1467,7 @@ namespace RhinoCheats
 			}
 		}
 
-		else if (!Stricmp(CmdLine.szCmdName, "rc_infinite"))
+		else if (!Stricmp(CmdLine.szCmdName, "neo_infinite"))
 		{
 			AddLog("%s executing.", acut::ToLower(CmdLine.szCmdName).c_str());
 
@@ -1480,122 +1476,6 @@ namespace RhinoCheats
 
 			AddLog("Score/time limit has been set to unlimited.");
 			AddLog("%s executed.", acut::ToLower(CmdLine.szCmdName).c_str());
-		}
-
-		else if (!Stricmp(CmdLine.szCmdName, "rc_memread"))
-		{
-			if (CmdLine.iArgNum > 1)
-			{
-				if (_strtoui64(CmdLine.szCmdArgs[0], NULL, 0x10) >= (QWORD)hIw6mp64_ship.lpBaseOfDll && _strtoui64(CmdLine.szCmdArgs[0], NULL, 0x10) <= ((QWORD)hIw6mp64_ship.lpBaseOfDll + hIw6mp64_ship.SizeOfImage))
-				{
-					if (!Stricmp(CmdLine.szCmdArgs[1], "byte"))
-					{
-						AddLog("%s executing.", acut::ToLower(CmdLine.szCmdName).c_str());
-						AddLog("%s at 0x%llX is 0x%hhX.", acut::ToUpper(CmdLine.szCmdArgs[1]).c_str(), _strtoui64(CmdLine.szCmdArgs[0], NULL, 0x10), *(BYTE*)_strtoui64(CmdLine.szCmdArgs[0], NULL, 0x10));
-						AddLog("%s executed.", acut::ToLower(CmdLine.szCmdName).c_str());
-					}
-
-					else if (!Stricmp(CmdLine.szCmdArgs[1], "word"))
-					{
-						AddLog("%s executing.", acut::ToLower(CmdLine.szCmdName).c_str());
-						AddLog("%s at 0x%llX is 0x%hX.", acut::ToUpper(CmdLine.szCmdArgs[1]).c_str(), _strtoui64(CmdLine.szCmdArgs[0], NULL, 0x10), *(WORD*)_strtoui64(CmdLine.szCmdArgs[0], NULL, 0x10));
-						AddLog("%s executed.", acut::ToLower(CmdLine.szCmdName).c_str());
-					}
-
-					else if (!Stricmp(CmdLine.szCmdArgs[1], "dword"))
-					{
-						AddLog("%s executing.", acut::ToLower(CmdLine.szCmdName).c_str());
-						AddLog("%s at 0x%llX is 0x%lX.", acut::ToUpper(CmdLine.szCmdArgs[1]).c_str(), _strtoui64(CmdLine.szCmdArgs[0], NULL, 0x10), *(DWORD*)_strtoui64(CmdLine.szCmdArgs[0], NULL, 0x10));
-						AddLog("%s executed.", acut::ToLower(CmdLine.szCmdName).c_str());
-					}
-
-					else if (!Stricmp(CmdLine.szCmdArgs[1], "qword"))
-					{
-						AddLog("%s executing.", acut::ToLower(CmdLine.szCmdName).c_str());
-						AddLog("%s at 0x%llX is 0x%llX.", acut::ToUpper(CmdLine.szCmdArgs[1]).c_str(), _strtoui64(CmdLine.szCmdArgs[0], NULL, 0x10), *(QWORD*)_strtoui64(CmdLine.szCmdArgs[0], NULL, 0x10));
-						AddLog("%s executed.", acut::ToLower(CmdLine.szCmdName).c_str());
-					}
-
-					else
-					{
-						AddLog("[ERROR] Invalid argument(s).");
-					}
-				}
-
-				else
-				{
-					AddLog("[ERROR] Invalid argument(s).");
-				}
-			}
-
-			else
-			{
-				AddLog("[ERROR] Missing argument(s).");
-			}
-		}
-
-		else if (!Stricmp(CmdLine.szCmdName, "rc_memwrite"))
-		{
-			if (CmdLine.iArgNum > 2)
-			{
-				if (_strtoui64(CmdLine.szCmdArgs[0], NULL, 0x10) >= (QWORD)hIw6mp64_ship.lpBaseOfDll && _strtoui64(CmdLine.szCmdArgs[0], NULL, 0x10) <= ((QWORD)hIw6mp64_ship.lpBaseOfDll + hIw6mp64_ship.SizeOfImage))
-				{
-					if (!Stricmp(CmdLine.szCmdArgs[1], "byte"))
-					{
-						AddLog("%s executing.", acut::ToLower(CmdLine.szCmdName).c_str());
-
-						WriteMemoryProtected((LPVOID)_strtoui64(CmdLine.szCmdArgs[0], NULL, 0x10), (BYTE)_strtoui64(CmdLine.szCmdArgs[2], NULL, 0x10));
-
-						AddLog("%s 0x%hhX has been written to 0x%llX.", acut::ToUpper(CmdLine.szCmdArgs[1]).c_str(), (BYTE)_strtoui64(CmdLine.szCmdArgs[2], NULL, 0x10), _strtoui64(CmdLine.szCmdArgs[0], NULL, 0x10));
-						AddLog("%s executed.", acut::ToLower(CmdLine.szCmdName).c_str());
-					}
-
-					else if (!Stricmp(CmdLine.szCmdArgs[1], "word"))
-					{
-						AddLog("%s executing.", acut::ToLower(CmdLine.szCmdName).c_str());
-
-						WriteMemoryProtected((LPVOID)_strtoui64(CmdLine.szCmdArgs[0], NULL, 0x10), (WORD)_strtoui64(CmdLine.szCmdArgs[2], NULL, 0x10));
-
-						AddLog("%s 0x%hX has been written to 0x%llX.", acut::ToUpper(CmdLine.szCmdArgs[1]).c_str(), (WORD)_strtoui64(CmdLine.szCmdArgs[2], NULL, 0x10), _strtoui64(CmdLine.szCmdArgs[0], NULL, 0x10));
-						AddLog("%s executed.", acut::ToLower(CmdLine.szCmdName).c_str());
-					}
-
-					else if (!Stricmp(CmdLine.szCmdArgs[1], "dword"))
-					{
-						AddLog("%s executing.", acut::ToLower(CmdLine.szCmdName).c_str());
-
-						WriteMemoryProtected((LPVOID)_strtoui64(CmdLine.szCmdArgs[0], NULL, 0x10), (DWORD)_strtoui64(CmdLine.szCmdArgs[2], NULL, 0x10));
-
-						AddLog("%s 0x%lX has been written to 0x%llX.", acut::ToUpper(CmdLine.szCmdArgs[1]).c_str(), (DWORD)_strtoui64(CmdLine.szCmdArgs[2], NULL, 0x10), _strtoui64(CmdLine.szCmdArgs[0], NULL, 0x10));
-						AddLog("%s executed.", acut::ToLower(CmdLine.szCmdName).c_str());
-					}
-
-					else if (!Stricmp(CmdLine.szCmdArgs[1], "qword"))
-					{
-						AddLog("%s executing.", acut::ToLower(CmdLine.szCmdName).c_str());
-
-						WriteMemoryProtected((LPVOID)_strtoui64(CmdLine.szCmdArgs[0], NULL, 0x10), (QWORD)_strtoui64(CmdLine.szCmdArgs[2], NULL, 0x10));
-
-						AddLog("%s 0x%llX has been written to 0x%llX.", acut::ToUpper(CmdLine.szCmdArgs[1]).c_str(), (QWORD)_strtoui64(CmdLine.szCmdArgs[2], NULL, 0x10), _strtoui64(CmdLine.szCmdArgs[0], NULL, 0x10));
-						AddLog("%s executed.", acut::ToLower(CmdLine.szCmdName).c_str());
-					}
-
-					else
-					{
-						AddLog("[ERROR] Invalid argument(s).");
-					}
-				}
-
-				else
-				{
-					AddLog("[ERROR] Invalid argument(s).");
-				}
-			}
-
-			else
-			{
-				AddLog("[ERROR] Missing argument(s).");
-			}
 		}
 
 		else

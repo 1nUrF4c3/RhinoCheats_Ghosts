@@ -2,7 +2,7 @@
 
 #include "StdAfx.hpp"
 
-using namespace RhinoCheats;
+using namespace NeoGenesys;
 
 //=====================================================================================
 

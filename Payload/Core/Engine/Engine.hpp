@@ -8,7 +8,7 @@
 
 //=====================================================================================
 
-#define PROGRAM_NAME "Rhino Cheats"
+#define PROGRAM_NAME "NeoGenesys"
 
 #define MAX_CLIENTS 18
 #define MAX_ENTITIES 2048
@@ -199,7 +199,7 @@
 
 //=====================================================================================
 
-namespace RhinoCheats
+namespace NeoGenesys
 {
 	typedef unsigned __int64 QWORD;
 

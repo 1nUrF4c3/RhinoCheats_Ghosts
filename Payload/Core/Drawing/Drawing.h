@@ -6,7 +6,7 @@
 
 //=====================================================================================
 
-namespace RhinoCheats
+namespace NeoGenesys
 {
 	class cDrawing
 	{
@@ -41,6 +41,7 @@ namespace RhinoCheats
 		void DrawCompass();
 		void DrawRadar();
 		void DrawCrosshair();
+		void ColorPicker(std::string label, ImVec4& color);
 	} extern _drawing;
 }
 

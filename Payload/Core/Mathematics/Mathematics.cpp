@@ -4,7 +4,7 @@
 
 //=====================================================================================
 
-namespace RhinoCheats
+namespace NeoGenesys
 {
 	cMathematics _mathematics;
 

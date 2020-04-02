@@ -4,7 +4,7 @@
 
 //=====================================================================================
 
-namespace RhinoCheats
+namespace NeoGenesys
 {
 	cTargetList _targetList;
 
@@ -350,7 +350,7 @@ namespace RhinoCheats
 	/*
 	//=====================================================================================
 	*/
-	bool cTargetList::IsVisibleInternal(sCEntity* entity, Vector3 position, short hitloc,  bool autowall, float* damage)
+	bool cTargetList::IsVisibleInternal(sCEntity* entity, Vector3 position, short hitloc, bool autowall, float* damage)
 	{
 		Vector3 vViewOrigin;
 
@@ -359,9 +359,12 @@ namespace RhinoCheats
 
 		if (WeaponIsVehicle(GetViewmodelWeapon(&CG->PlayerState)))
 		{
-			bool bTraceHit = _autoWall.TraceLine(RefDef->vViewOrg, position, entity->NextEntityState.iEntityNum);
+			float flDamage = _autoWall.C_TraceBullet(RefDef->vViewOrg, position, hitloc, entity->NextEntityState.iEntityNum);
 
-			if (bTraceHit)
+			if (damage)
+				*damage = flDamage;
+
+			if (flDamage >= 1.0f)
 				return true;
 		}
 
@@ -378,9 +381,12 @@ namespace RhinoCheats
 
 		else
 		{
-			bool bTraceHit = _autoWall.C_TraceBullet(vViewOrigin, position, entity->NextEntityState.iEntityNum);
+			float flDamage = _autoWall.C_TraceBullet(vViewOrigin, position, hitloc, entity->NextEntityState.iEntityNum);
 
-			if (bTraceHit)
+			if (damage)
+				*damage = flDamage;
+
+			if (flDamage >= 1.0f)
 				return true;
 		}
 
@@ -400,35 +406,19 @@ namespace RhinoCheats
 		{
 			for (auto& Bone : vBones)
 			{
-				if (autowall)
+				if (IsVisibleInternal(entity, bones3d[Bone.first], vBones[Bone.first].second, autowall, &DamageInfo.flDamage))
 				{
-					if (IsVisibleInternal(entity, bones3d[Bone.first], vBones[Bone.first].second, true, &DamageInfo.flDamage))
-					{
-						DamageInfo.iBoneIndex = Bone.first;
-						vDamageInfo.push_back(DamageInfo);
+					DamageInfo.iBoneIndex = Bone.first;
+					vDamageInfo.push_back(DamageInfo);
 
-						bReturn = true;
-					}
-				}
-
-				else
-				{
-					if (IsVisibleInternal(entity, bones3d[Bone.first], vBones[Bone.first].second, false, NULL))
-					{
-						*index = Bone.first;
-						return true;
-					}
+					bReturn = true;
 				}
 			}
 		}
 
 		else
 		{
-			if (autowall)
-				return IsVisibleInternal(entity, bones3d[*index], vBones[*index].second, true, &DamageInfo.flDamage);
-
-			else
-				return IsVisibleInternal(entity, bones3d[*index], vBones[*index].second, false, NULL);
+			return IsVisibleInternal(entity, bones3d[*index], vBones[*index].second, autowall, &DamageInfo.flDamage);
 		}
 
 		if (!vDamageInfo.empty())

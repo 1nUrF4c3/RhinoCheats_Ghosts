@@ -4,7 +4,7 @@
 
 //=====================================================================================
 
-namespace RhinoCheats
+namespace NeoGenesys
 {
 	cHooks _hooks;
 
@@ -85,15 +85,12 @@ namespace RhinoCheats
 	{
 		if (LocalClientIsInGame())
 		{
-			if (_antiAim.IsAntiAiming())
+			if (_profiler.gThirdPersonAntiAim->Custom.bValue && _antiAim.IsAntiAiming())
 			{
-				if (_profiler.gAntiAim->Custom.iValue > cProfiler::ANTIAIM_OFF)
+				if (entity->NextEntityState.iEntityNum == CG->PlayerState.iClientNum)
 				{
-					if (entity->NextEntityState.iEntityNum == CG->PlayerState.iClientNum)
-					{
-						CharacterInfo[entity->NextEntityState.iEntityNum].vViewAngles[0] = _antiAim.vAntiAimAngles[0] + CG->vRefDefViewAngles[0];
-						entity->vViewAngles[1] = _antiAim.vAntiAimAngles[1] + CG->vRefDefViewAngles[1];
-					}
+					CharacterInfo[entity->NextEntityState.iEntityNum].vViewAngles[0] = _antiAim.vAntiAimAngles[0] + CG->vRefDefViewAngles[0];
+					entity->vViewAngles[1] = _antiAim.vAntiAimAngles[1] + CG->vRefDefViewAngles[1];
 				}
 			}
 		}
@@ -147,7 +144,7 @@ namespace RhinoCheats
 
 						szIcon[iLength] = NULL;
 
-						Cbuf_AddText(VariadicText("say \"^5%s ^7- Get ^6%s ^7courtesy of ^6Rhino^0Cheats^7.com\"\n",
+						Cbuf_AddText(VariadicText("say \"^5%s ^7- Get ^6%s ^7courtesy of ^6Neo^0Genesys\"\n",
 							ClientInfo[entitystate->iOtherEntityNum].szName, szIcon));
 					}
 				}
