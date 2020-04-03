@@ -10,8 +10,6 @@ namespace RhinoCheats
 
 	void cHooks::Refresh(int localnum)
 	{
-		dwThreadLocalStoragePointer = Sys_GetValue(3);
-
 		if (LocalClientIsInGame() && CG->PlayerState.iOtherFlags & 0x4000)
 		{
 			_targetList.GetInformation();
@@ -68,7 +66,7 @@ namespace RhinoCheats
 				int iSeed = _removals.TransformSeed(WeaponIsAkimbo(GetViewmodelWeapon(&CG->PlayerState)) && pUserCmd->iButtons & (IsGamePadEnabled() ? BUTTON_FIRERIGHT : BUTTON_FIRELEFT), pUserCmd->iServerTime);
 
 				Vector3 vAngles, vForward, vRight, vUp;
-				VectorCopy(_aimBot.AimState.vAimbotAngles, vAngles);
+				VectorCopy(_aimBot.AimState.vAimAngles, vAngles);
 
 				vAngles[0] += WeaponIsVehicle(GetViewmodelWeapon(&CG->PlayerState)) ? CG->vRefDefViewAngles[0] : IsThirdPersonMode(&CG->PlayerState) ? CG->vThirdPersonViewAngles[0] : CG->vWeaponAngles[0];
 				vAngles[1] += WeaponIsVehicle(GetViewmodelWeapon(&CG->PlayerState)) ? CG->vRefDefViewAngles[1] : IsThirdPersonMode(&CG->PlayerState) ? CG->vThirdPersonViewAngles[1] : CG->vWeaponAngles[1];
@@ -85,12 +83,12 @@ namespace RhinoCheats
 	{
 		if (LocalClientIsInGame())
 		{
-			if (_profiler.gThirdPersonAntiAim->Custom.bValue && _antiAim.IsAntiAiming())
+			if (_profiler.gThirdPersonAntiAim->Custom.bValue && _antiAim.IsAntiAiming() && !_mainGui.GetKeyPress(VK_DELETE, true))
 			{
 				if (entity->NextEntityState.iEntityNum == CG->PlayerState.iClientNum)
 				{
-					CharacterInfo[entity->NextEntityState.iEntityNum].vViewAngles[0] = _antiAim.vAntiAimAngles[0] + CG->vRefDefViewAngles[0];
-					entity->vViewAngles[1] = _antiAim.vAntiAimAngles[1] + CG->vRefDefViewAngles[1];
+					CharacterInfo[entity->NextEntityState.iEntityNum].vViewAngles[0] = _antiAim.vAntiAimAngles[0] + CG->PlayerState.vDeltaAngles[0];
+					entity->vViewAngles[1] = _antiAim.vAntiAimAngles[1] + CG->PlayerState.vDeltaAngles[1];
 				}
 			}
 		}
@@ -177,24 +175,6 @@ namespace RhinoCheats
 	{
 		if (LocalClientIsInGame())
 			_host.MassKill();
-	}
-	/*
-	//=====================================================================================
-	*/
-	LONG cHooks::VectoredExceptionHandler(_In_ LPEXCEPTION_POINTERS ExceptionInfo)
-	{
-		if (ExceptionInfo->ExceptionRecord->ExceptionCode == EXCEPTION_ACCESS_VIOLATION)
-		{
-			if (ExceptionInfo->ContextRecord->Rip == OFF_SYSGETVALUEEXCEPTION)
-			{
-				ExceptionInfo->ContextRecord->Rax = dwThreadLocalStoragePointer;
-				ExceptionInfo->ContextRecord->Rip += 0x4;
-
-				return EXCEPTION_CONTINUE_EXECUTION;
-			}
-		}
-
-		return EXCEPTION_CONTINUE_SEARCH;
 	}
 }
 
