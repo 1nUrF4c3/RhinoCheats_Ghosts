@@ -192,6 +192,9 @@ namespace RhinoCheats
 
 		NormalizeAngles(angles);
 
+		angles[0] = -40.0f - angles[0];
+		angles[1] = angles[1] - 180.0f;
+
 		angles[0] -= CG->PlayerState.vDeltaAngles[0];
 		angles[1] -= CG->PlayerState.vDeltaAngles[1];
 
