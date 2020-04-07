@@ -42,6 +42,7 @@ namespace RhinoCheats
 			vCommands.push_back("rc_rapidfire");
 			vCommands.push_back("rc_superjump");
 			vCommands.push_back("rc_masskill");
+			vCommands.push_back("rc_antileave");
 			vCommands.push_back("rc_bhop");
 			vCommands.push_back("rc_tbag");
 			vCommands.push_back("rc_experience");
@@ -54,6 +55,7 @@ namespace RhinoCheats
 			vCommands.push_back("rc_chatspam");
 			vCommands.push_back("rc_killspam");
 			vCommands.push_back("rc_spawnbot");
+			vCommands.push_back("rc_enableai");
 			vCommands.push_back("rc_infinite");
 
 			AddLog("Ready.");
@@ -133,19 +135,21 @@ namespace RhinoCheats
 			AddLog("8. rc_rapidfire <on|off>\n\t\tEnable/disable rapidfire weapon rate (as host).");
 			AddLog("9. rc_superjump <on|off>\n\t\tEnable/disable super high jump (as host).");
 			AddLog("10. rc_masskill <off|axis|allies|all>\n\t\tEnable/disable player masskill (as host).");
-			AddLog("11. rc_bhop <on|off>\n\t\tEnable/disable auto bunny hop on jump.");
-			AddLog("12. rc_tbag <on|off> <message>\n\t\tEnable/disable auto tea bag on kill with optional message (as host).");
-			AddLog("13. rc_experience <all|index> <max|experience>\n\t\tSet your experience.");
-			AddLog("14. rc_prestige <max|number>\n\t\tSet your prestige.");
-			AddLog("15. rc_squadpoints <max|squadpoints>\n\t\tSet your squadpoints.");
-			AddLog("16. rc_unlockall\n\t\tUnlock everything in the game.");
-			AddLog("17. rc_resetstats\n\t\tCompletely erase your save game.");
-			AddLog("18. rc_hostdvar <dvar> <value>\n\t\tSet DVAR value for all clients (as host).");
-			AddLog("19. rc_message <self|index> <all|index> <lobby|team|private> <message>\n\t\tSend a message (as host).");
-			AddLog("20. rc_chatspam <on|off> <message>\n\t\tEnable/disable custom chatspam message.");
-			AddLog("21. rc_killspam <on|off> <message>\n\t\tEnable/disable custom killspam message.");
-			AddLog("22. rc_spawnbot <max|number>\n\t\tSpawn bots into the current match (as host).");
-			AddLog("23. rc_infinite\n\t\tSet scorelimit and timelimit to unlimited (as host).");
+			AddLog("11. rc_antileave <off|on>\n\t\tEnable/disable player antileave (as host).");
+			AddLog("12. rc_bhop <on|off>\n\t\tEnable/disable auto bunny hop on jump.");
+			AddLog("13. rc_tbag <on|off> <message>\n\t\tEnable/disable auto tea bag on kill with optional message (as host).");
+			AddLog("14. rc_experience <all|index> <max|experience>\n\t\tSet your experience.");
+			AddLog("15. rc_prestige <max|number>\n\t\tSet your prestige.");
+			AddLog("16. rc_squadpoints <max|squadpoints>\n\t\tSet your squadpoints.");
+			AddLog("17. rc_unlockall\n\t\tUnlock everything in the game.");
+			AddLog("18. rc_resetstats\n\t\tCompletely erase your save game.");
+			AddLog("19. rc_hostdvar <dvar> <value>\n\t\tSet DVAR value for all clients (as host).");
+			AddLog("20. rc_message <self|index> <all|index> <lobby|team|private> <message>\n\t\tSend a message (as host).");
+			AddLog("21. rc_chatspam <on|off> <message>\n\t\tEnable/disable custom chatspam message.");
+			AddLog("22. rc_killspam <on|off> <message>\n\t\tEnable/disable custom killspam message.");
+			AddLog("23. rc_spawnbot <max|number>\n\t\tSpawn bots into the current match (as host).");
+			AddLog("24. rc_enableai <on|off>\n\t\tEnable/disable AI system for bots in public match (as host).");
+			AddLog("25. rc_infinite\n\t\tSet scorelimit and timelimit to unlimited (as host).");
 
 			bWriteLog = true;
 		} ImGui::SameLine();
@@ -216,7 +220,7 @@ namespace RhinoCheats
 		{
 			LPSTR szInputEnd = szInput + strlen(szInput);
 
-			while (szInputEnd > szInput&& szInputEnd[-1] == ' ')
+			while (szInputEnd > szInput && szInputEnd[-1] == ' ')
 			{
 				szInputEnd--;
 			} *szInputEnd = 0;
@@ -617,6 +621,42 @@ namespace RhinoCheats
 					_profiler.gMassKill->Current.iValue = cProfiler::MASSKILL_ALL;
 
 					AddLog("Masskill has been set to %s.", acut::ToLower(CmdLine.szCmdArgs[0]));
+					AddLog("%s executed.", acut::ToLower(CmdLine.szCmdName).c_str());
+				}
+
+				else
+				{
+					AddLog("[ERROR] Invalid argument(s).");
+				}
+			}
+
+			else
+			{
+				AddLog("[ERROR] Missing argument(s).");
+			}
+		}
+
+		else if (!Stricmp(CmdLine.szCmdName, "rc_antileave"))
+		{
+			if (CmdLine.iArgNum > 0)
+			{
+				if (!Stricmp(CmdLine.szCmdArgs[0], "on"))
+				{
+					AddLog("%s executing.", acut::ToLower(CmdLine.szCmdName).c_str());
+
+					_profiler.gAntiLeave->Current.bValue = true;
+
+					AddLog("Anti-leave has been enabled.");
+					AddLog("%s executed.", acut::ToLower(CmdLine.szCmdName).c_str());
+				}
+
+				else if (!Stricmp(CmdLine.szCmdArgs[0], "off"))
+				{
+					AddLog("%s executing.", acut::ToLower(CmdLine.szCmdName).c_str());
+
+					_profiler.gAntiLeave->Current.bValue = false;
+
+					AddLog("Anti-leave has been disabled.");
 					AddLog("%s executed.", acut::ToLower(CmdLine.szCmdName).c_str());
 				}
 
@@ -1397,7 +1437,7 @@ namespace RhinoCheats
 		{
 			if (CmdLine.iArgNum > 0)
 			{
-				int iCurrentPlayers = 0, iCurrentIndex = 0;
+				int iCurrentPlayers = 0;
 
 				for (int i = 0; i < FindVariable("sv_maxclients")->Current.iValue; i++)
 					if (CharacterInfo[i].iInfoValid)
@@ -1407,23 +1447,7 @@ namespace RhinoCheats
 				{
 					AddLog("%s executing.", acut::ToLower(CmdLine.szCmdName).c_str());
 
-					for (int i = 0; i < FindVariable("sv_maxclients")->Current.iValue - iCurrentPlayers; iCurrentIndex++)
-					{
-						if (CharacterInfo[iCurrentIndex].iInfoValid)
-							continue;
-
-						sEntRef EntRef;
-
-						EntRef.wEntityNum = iCurrentIndex;
-						EntRef.wClassNum = 0;
-
-						sGEntity* pEntity = AddTestClient(TC_NONE, TEAM_FREE, iCurrentIndex, EntRef);
-
-						AddEntity(pEntity);
-						SpawnTestClient(pEntity);
-
-						i++;
-					}
+					_host.SpawnBots(FindVariable("sv_maxclients")->Current.iValue - iCurrentPlayers);
 
 					AddLog("Spawned %i bots into the match.", FindVariable("sv_maxclients")->Current.iValue - iCurrentPlayers);
 					AddLog("%s executed.", acut::ToLower(CmdLine.szCmdName).c_str());
@@ -1433,25 +1457,46 @@ namespace RhinoCheats
 				{
 					AddLog("%s executing.", acut::ToLower(CmdLine.szCmdName).c_str());
 
-					for (int i = 0; i < atoi(CmdLine.szCmdArgs[0]); iCurrentIndex++)
-					{
-						if (CharacterInfo[iCurrentIndex].iInfoValid)
-							continue;
-
-						sEntRef EntRef;
-
-						EntRef.wEntityNum = iCurrentIndex;
-						EntRef.wClassNum = 0;
-
-						sGEntity* pEntity = AddTestClient(TC_NONE, TEAM_FREE, iCurrentIndex, EntRef);
-
-						AddEntity(pEntity);
-						SpawnTestClient(pEntity);
-
-						i++;
-					}
+					_host.SpawnBots(atoi(CmdLine.szCmdArgs[0]));
 
 					AddLog("Spawned %i bot(s) into the match.", atoi(CmdLine.szCmdArgs[0]));
+					AddLog("%s executed.", acut::ToLower(CmdLine.szCmdName).c_str());
+				}
+
+				else
+				{
+					AddLog("[ERROR] Invalid argument(s).");
+				}
+			}
+
+			else
+			{
+				AddLog("[ERROR] Missing argument(s).");
+			}
+		}
+
+
+		else if (!Stricmp(CmdLine.szCmdName, "rc_enableai"))
+		{
+			if (CmdLine.iArgNum > 0)
+			{
+				if (!Stricmp(CmdLine.szCmdArgs[0], "on"))
+				{
+					AddLog("%s executing.", acut::ToLower(CmdLine.szCmdName).c_str());
+
+					Cbuf_AddText("xblive_privatematch 1\n");
+
+					AddLog("AI system has been enabled.");
+					AddLog("%s executed.", acut::ToLower(CmdLine.szCmdName).c_str());
+				}
+
+				else if (!Stricmp(CmdLine.szCmdArgs[0], "off"))
+				{
+					AddLog("%s executing.", acut::ToLower(CmdLine.szCmdName).c_str());
+
+					Cbuf_AddText("xblive_privatematch 0\n");
+
+					AddLog("AI system has been disabled.");
 					AddLog("%s executed.", acut::ToLower(CmdLine.szCmdName).c_str());
 				}
 
