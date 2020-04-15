@@ -93,9 +93,17 @@ namespace RhinoCheats
 			bool bKey, bDown, bUp;
 		} VirtualKeys[MAX_VIRTUALKEYS];
 
+		HINSTANCE hInstDll;
+		HRSRC hResource;
+		DWORD dwResourceSize;
+		LPVOID pResourceData;
+
 		HWND hWindow;
 		ID3D11Device* pDevice;
 		ID3D11DeviceContext* pDeviceContext;
+
+		ID3D11Resource* pD3D11Resource;
+		ID3D11ShaderResourceView* pD3D11ShaderResourceView;
 
 		void InitInterface();
 		void SetMenuColor(int index);

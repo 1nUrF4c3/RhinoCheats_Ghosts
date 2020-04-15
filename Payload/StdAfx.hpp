@@ -15,6 +15,7 @@
 
 #include "ImGui/Addons/FileSystem/imguifilesystem.h"
 #include "ImGui/Addons/TabWindow/imguitabwindow.h"
+#include "ImGui/Addons/WICTextureLoader.h"
 #include "ImGui/DX11/imgui_impl_dx11.h"
 #include "ImGui/Fonts/Eurostile_Bold.hpp"
 #include "ImGui/Fonts/Eurostile_Extended.hpp"
@@ -37,5 +38,6 @@
 #include "Core/TargetList/TargetList.h"
 #include "Core/Hooks.h"
 #include "Core/MainGUI.h"
+#include "Resources/Resource.h"
 
 //=====================================================================================

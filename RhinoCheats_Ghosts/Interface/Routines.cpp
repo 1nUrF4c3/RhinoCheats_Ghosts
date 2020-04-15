@@ -62,7 +62,7 @@ void cMainDlg::Inject()
 
 		CopyMemory(pPayloadData, LockResource(LoadResource(_instance, hResource)), dwPayloadSize);
 
-		_lastStatus = _process.mmap().MapImage(dwPayloadSize, pPayloadData, false, blackbone::WipeHeader).status;
+		_lastStatus = _process.mmap().MapImage(dwPayloadSize, pPayloadData).status;
 
 		char szError[1024] = { NULL };
 		wsprintf(szError, "Status: 0x%X", _lastStatus);

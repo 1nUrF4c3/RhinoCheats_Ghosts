@@ -33,6 +33,10 @@ namespace RhinoCheats
 
 		RefreshInterface(_profiler.gMenuColor->Current.iValue, _profiler.gMenuCursor->Current.iValue, _profiler.gMenuFont->Current.iValue);
 
+		hResource = FindResource(hInstDll, MAKEINTRESOURCE(IDB_BACKGROUND), "PNG");
+		dwResourceSize = SizeofResource(hInstDll, hResource);
+		pResourceData = LockResource(LoadResource(hInstDll, hResource));
+
 		bInitialized = true;
 	}
 	/*
@@ -386,6 +390,12 @@ namespace RhinoCheats
 				ImGui::SetNextWindowSize(ImVec2(490.0f, 324.0f));
 				ImGui::Begin(acut::ToUpper(PROGRAM_NAME).c_str(), &Menu.bShowWindow, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoCollapse);
 				ImGui::SetColorEditOptions(ImGuiColorEditFlags_NoPicker | ImGuiColorEditFlags_NoOptions | ImGuiColorEditFlags_NoSmallPreview | ImGuiColorEditFlags_NoTooltip | ImGuiColorEditFlags_NoDragDrop);
+
+				if (pResourceData && dwResourceSize)
+				{
+					CreateWICTextureFromMemory(pDevice, pDeviceContext, (uint8_t*)pResourceData, (size_t)dwResourceSize, &pD3D11Resource, &pD3D11ShaderResourceView);
+					ImGui::GetWindowDrawList()->AddImage(pD3D11ShaderResourceView, ImGui::GetWindowPos(), ImVec2(ImGui::GetWindowPos().x + ImGui::GetWindowSize().x, ImGui::GetWindowPos().y + ImGui::GetWindowSize().y));
+				}
 
 				if (ImGui::TabLabels(_profiler.gMenuTabs->Domain.iMax, acut::StringVectorToCharPointerArray(_profiler.gMenuTabs->szItems), _profiler.gMenuTabs->Current.iValue, NULL, false, NULL, NULL, false, false, NULL, NULL, &ImVec2(94.0f, 25.0f)))
 				{

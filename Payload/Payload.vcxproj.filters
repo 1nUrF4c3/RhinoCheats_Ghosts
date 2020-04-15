@@ -65,6 +65,9 @@
     <ClCompile Include="Core\Profiler\RapidXML\Utilities\FileUtility.cpp">
       <Filter>Core\Profiler\RapidXML\Utilities</Filter>
     </ClCompile>
+    <ClCompile Include="ImGui\Addons\WICTextureLoader.cpp">
+      <Filter>ImGui\Addons</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StdAfx.hpp" />
@@ -182,6 +185,12 @@
     <ClInclude Include="ImGui\imgui_memory_editor.h">
       <Filter>ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="ImGui\Addons\WICTextureLoader.h">
+      <Filter>ImGui\Addons</Filter>
+    </ClInclude>
+    <ClInclude Include="Resources\Resource.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
@@ -253,5 +262,18 @@
     <Filter Include="Core\Profiler\RapidXML\Utilities">
       <UniqueIdentifier>{90cc76e7-a097-4e4d-80f4-c72fc5795cc2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{4d2bb48d-9517-4a2c-9d7b-cfbf3c137751}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\Resource.png">
+      <Filter>Resources</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resources\Resource.rc">
+      <Filter>Resources</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>
