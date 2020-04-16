@@ -93,23 +93,17 @@ namespace RhinoCheats
 			bool bKey, bDown, bUp;
 		} VirtualKeys[MAX_VIRTUALKEYS];
 
-		HINSTANCE hInstDll;
-		HRSRC hResource;
-		DWORD dwResourceSize;
-		LPVOID pResourceData;
-
 		HWND hWindow;
+		HINSTANCE hInstDll;
 		ID3D11Device* pDevice;
 		ID3D11DeviceContext* pDeviceContext;
-
-		ID3D11Resource* pD3D11Resource;
-		ID3D11ShaderResourceView* pD3D11ShaderResourceView;
 
 		void InitInterface();
 		void SetMenuColor(int index);
 		void SetMenuCursor(int index);
 		void SetMenuFont(int index);
 		void RefreshInterface(int color, int cursor, int font);
+		void DrawBackgroundImage();
 		bool GetKeyPress(int vkey, bool immediate);
 
 		void WINAPI Present(_In_ IDXGISwapChain* pSwapChain, _In_ UINT SyncInterval, _In_ UINT Flags);
