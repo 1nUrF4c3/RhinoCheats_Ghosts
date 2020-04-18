@@ -102,11 +102,11 @@ namespace RhinoCheats
 		ID3D11ShaderResourceView* pD3D11ShaderResourceView;
 
 		void InitInterface();
+		void LoadBackgroundImage();
 		void SetMenuColor(int index);
 		void SetMenuCursor(int index);
 		void SetMenuFont(int index);
 		void RefreshInterface(int color, int cursor, int font);
-		void LoadBackgroundImage();
 		bool GetKeyPress(int vkey, bool immediate);
 
 		void WINAPI Present(_In_ IDXGISwapChain* pSwapChain, _In_ UINT SyncInterval, _In_ UINT Flags);

@@ -40,6 +40,48 @@ namespace RhinoCheats
 	/*
 	//=====================================================================================
 	*/
+	void cMainGUI::LoadBackgroundImage()
+	{
+		HRESULT hResult = S_OK;
+
+		HRSRC hResource;
+		HGLOBAL hGlobal;
+		LPVOID pResourceData;
+		DWORD dwResourceSize;
+
+		if (SUCCEEDED(hResult))
+		{
+			hResource = FindResource(hInstDll, MAKEINTRESOURCE(IDB_BACKGROUND), "PNG");
+			hResult = (hResource ? S_OK : E_FAIL);
+		}
+
+		if (SUCCEEDED(hResult))
+		{
+			hGlobal = LoadResource(hInstDll, hResource);
+			hResult = (hGlobal ? S_OK : E_FAIL);
+		}
+
+		if (SUCCEEDED(hResult))
+		{
+			pResourceData = LockResource(hGlobal);
+			hResult = (pResourceData ? S_OK : E_FAIL);
+		}
+
+		if (SUCCEEDED(hResult))
+		{
+			dwResourceSize = SizeofResource(hInstDll, hResource);
+			hResult = (dwResourceSize ? S_OK : E_FAIL);
+		}
+
+		if (SUCCEEDED(hResult))
+		{
+			CreateWICTextureFromMemory(pDevice, pDeviceContext, (uint8_t*)pResourceData, (size_t)dwResourceSize, &pD3D11Resource, &pD3D11ShaderResourceView);
+			hResult = (pD3D11Resource && pD3D11ShaderResourceView ? S_OK : E_FAIL);
+		}
+	}
+	/*
+	//=====================================================================================
+	*/
 	void cMainGUI::SetMenuColor(int index)
 	{
 		switch (index)
@@ -179,48 +221,6 @@ namespace RhinoCheats
 		ImGui_ImplDX11_CreateDeviceObjects();
 
 		SetMenuFont(font);
-	}
-	/*
-	//=====================================================================================
-	*/
-	void cMainGUI::LoadBackgroundImage()
-	{
-		HRESULT hResult = S_OK;
-
-		HRSRC hResource;
-		HGLOBAL hGlobal;
-		LPVOID pResourceData;
-		DWORD dwResourceSize;
-
-		if (SUCCEEDED(hResult))
-		{
-			hResource = FindResource(hInstDll, MAKEINTRESOURCE(IDB_BACKGROUND), "PNG");
-			hResult = (hResource ? S_OK : E_FAIL);
-		}
-
-		if (SUCCEEDED(hResult))
-		{
-			hGlobal = LoadResource(hInstDll, hResource);
-			hResult = (hGlobal ? S_OK : E_FAIL);
-		}
-
-		if (SUCCEEDED(hResult))
-		{
-			pResourceData = LockResource(hGlobal);
-			hResult = (pResourceData ? S_OK : E_FAIL);
-		}
-
-		if (SUCCEEDED(hResult))
-		{
-			dwResourceSize = SizeofResource(hInstDll, hResource);
-			hResult = (dwResourceSize ? S_OK : E_FAIL);
-		}
-
-		if (SUCCEEDED(hResult))
-		{
-			CreateWICTextureFromMemory(pDevice, pDeviceContext, (uint8_t*)pResourceData, (size_t)dwResourceSize, &pD3D11Resource, &pD3D11ShaderResourceView);
-			hResult = (pD3D11Resource && pD3D11ShaderResourceView ? S_OK : E_FAIL);
-		}
 	}
 	/*
 	//=====================================================================================
