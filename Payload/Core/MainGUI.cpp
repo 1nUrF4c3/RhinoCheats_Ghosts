@@ -675,12 +675,12 @@ namespace RhinoCheats
 						Menu.bWriteLog = true;
 					} ImGui::NewLine();
 
-					if (ImGui::SliderFloat(FindVariable("cg_fov")->szName, &FindVariable("cg_fov")->Current.flValue, FindVariable("cg_fov")->Domain.flMin, FindVariable("cg_fov")->Domain.flMax))
+					if (ImGui::SliderFloat("Field Of View", &FindVariable("cg_fov")->Current.flValue, FindVariable("cg_fov")->Domain.flMin, FindVariable("cg_fov")->Domain.flMax, "%.0f fov"))
 					{
 						Menu.bWriteLog = true;
 					} ImGui::NewLine();
 
-					if (ImGui::SliderInt(FindVariable("com_maxfps")->szName, (int*)&FindVariable("com_maxfps")->Current.dwValue, FindVariable("com_maxfps")->Domain.dwMin, FindVariable("com_maxfps")->Domain.dwMax))
+					if (ImGui::SliderInt("Frames Per Second", (int*)&FindVariable("com_maxfps")->Current.dwValue, FindVariable("com_maxfps")->Domain.dwMin, FindVariable("com_maxfps")->Domain.dwMax, "%d fps"))
 					{
 						Menu.bWriteLog = true;
 					} ImGui::NewLine(); ImGui::Separator(); ImGui::NewLine();

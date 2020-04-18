@@ -38,6 +38,7 @@
 #include "Core/TargetList/TargetList.h"
 #include "Core/Hooks.h"
 #include "Core/MainGUI.h"
+
 #include "Resources/Resource.h"
 
 //=====================================================================================
