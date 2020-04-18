@@ -33,6 +33,8 @@ namespace RhinoCheats
 
 		RefreshInterface(_profiler.gMenuColor->Current.iValue, _profiler.gMenuCursor->Current.iValue, _profiler.gMenuFont->Current.iValue);
 
+		LoadBackgroundImage();
+
 		bInitialized = true;
 	}
 	/*
@@ -181,7 +183,7 @@ namespace RhinoCheats
 	/*
 	//=====================================================================================
 	*/
-	void cMainGUI::DrawBackgroundImage()
+	void cMainGUI::LoadBackgroundImage()
 	{
 		HRESULT hResult = S_OK;
 
@@ -189,9 +191,6 @@ namespace RhinoCheats
 		HGLOBAL hGlobal;
 		LPVOID pResourceData;
 		DWORD dwResourceSize;
-
-		ID3D11Resource* pD3D11Resource;
-		ID3D11ShaderResourceView* pD3D11ShaderResourceView;
 
 		if (SUCCEEDED(hResult))
 		{
@@ -221,11 +220,6 @@ namespace RhinoCheats
 		{
 			CreateWICTextureFromMemory(pDevice, pDeviceContext, (uint8_t*)pResourceData, (size_t)dwResourceSize, &pD3D11Resource, &pD3D11ShaderResourceView);
 			hResult = (pD3D11Resource && pD3D11ShaderResourceView ? S_OK : E_FAIL);
-		}
-
-		if (SUCCEEDED(hResult))
-		{
-			ImGui::GetWindowDrawList()->AddImage(pD3D11ShaderResourceView, ImGui::GetWindowPos(), ImGui::GetWindowPos() + ImGui::GetWindowSize());
 		}
 	}
 	/*
@@ -437,7 +431,7 @@ namespace RhinoCheats
 				ImGui::Begin(acut::ToUpper(PROGRAM_NAME).c_str(), &Menu.bShowWindow, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoCollapse);
 				ImGui::SetColorEditOptions(ImGuiColorEditFlags_NoPicker | ImGuiColorEditFlags_NoOptions | ImGuiColorEditFlags_NoSmallPreview | ImGuiColorEditFlags_NoTooltip | ImGuiColorEditFlags_NoDragDrop);
 
-				DrawBackgroundImage();
+				ImGui::GetWindowDrawList()->AddImage(pD3D11ShaderResourceView, ImGui::GetWindowPos(), ImGui::GetWindowPos() + ImGui::GetWindowSize());
 
 				if (ImGui::TabLabels(_profiler.gMenuTabs->Domain.iMax, acut::StringVectorToCharPointerArray(_profiler.gMenuTabs->szItems), _profiler.gMenuTabs->Current.iValue, NULL, false, NULL, NULL, false, false, NULL, NULL, &ImVec2(94.0f, 25.0f)))
 				{
