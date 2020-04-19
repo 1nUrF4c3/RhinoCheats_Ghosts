@@ -67,9 +67,7 @@
     <ClCompile Include="ImGui\Addons\WICTextureLoader.cpp">
       <Filter>ImGui\Addons</Filter>
     </ClCompile>
-    <ClCompile Include="DllMain.cpp">
-      <Filter>DirectX\Include</Filter>
-    </ClCompile>
+    <ClCompile Include="DllMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Aimbot\Aimbot.h">
@@ -378,9 +376,6 @@
     <ClInclude Include="DirectX\Include\rpcsal.h">
       <Filter>DirectX\Include</Filter>
     </ClInclude>
-    <ClInclude Include="StdAfx.hpp">
-      <Filter>DirectX\Include</Filter>
-    </ClInclude>
     <ClInclude Include="DirectX\Include\X3DAudio.h">
       <Filter>DirectX\Include</Filter>
     </ClInclude>
@@ -420,6 +415,7 @@
     <ClInclude Include="DirectX\Include\xnamath.h">
       <Filter>DirectX\Include</Filter>
     </ClInclude>
+    <ClInclude Include="StdAfx.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">

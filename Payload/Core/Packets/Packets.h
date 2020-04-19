@@ -15,8 +15,8 @@ namespace RhinoCheats
 		int iTeaBagTime;
 		Vector3 vTeaBagPos;
 
-		void WritePacket(sUserCmd* currentcmd);
-		void CreateNewCommands(sUserCmd* oldcmd, sUserCmd* newcmd);
+		void WritePacket(sUserCmd* usercmd);
+		void PredictPlayerState(sUserCmd* usercmd);
 	} extern _packets;
 }
 
