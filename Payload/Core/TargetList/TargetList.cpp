@@ -117,7 +117,7 @@ namespace RhinoCheats
 
 			VectorNormalize(vDirection);
 			VectorAngles(vDirection, vAngles);
-			_mathematics.NormalizeAngles(vAngles);
+			_mathematics.ClampAngles(vAngles);
 
 			VectorSubtract(vAngles, CEntity[i].vViewAngles, vDelta);
 
