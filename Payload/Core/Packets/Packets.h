@@ -12,7 +12,7 @@ namespace RhinoCheats
 	{
 	public:
 
-		int iTeaBagTime;
+		int iTeaBagTime = -3000;
 		Vector3 vTeaBagPos;
 
 		void WritePacket(sUserCmd* usercmd);

@@ -65,6 +65,9 @@
       <Filter>Core\Profiler\RapidXML\Utilities</Filter>
     </ClCompile>
     <ClCompile Include="DllMain.cpp" />
+    <ClCompile Include="ImGui\Addons\WICTextureLoader.cpp">
+      <Filter>ImGui\Addons</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Aimbot\Aimbot.h">
@@ -407,6 +410,9 @@
       <Filter>DirectX\Include</Filter>
     </ClInclude>
     <ClInclude Include="StdAfx.hpp" />
+    <ClInclude Include="ImGui\Addons\WICTextureLoader.h">
+      <Filter>ImGui\Addons</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Core">
