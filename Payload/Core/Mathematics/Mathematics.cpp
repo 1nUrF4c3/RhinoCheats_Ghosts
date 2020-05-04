@@ -260,7 +260,7 @@ namespace RhinoCheats
 		VectorAngles(vDirection, vAngles);
 
 		VectorSubtract(WeaponIsVehicle(GetViewmodelWeapon(&CG->PlayerState)) ? CG->vRefDefViewAngles : IsThirdPersonMode(&CG->PlayerState) ? CG->vThirdPersonViewAngles : CG->vWeaponAngles, vAngles, vAngles);
-		_mathematics.ClampAngles(vAngles);
+		ClampAngles(vAngles);
 
 		flAngle = ((vAngles[1] + 180.0f) / 360.0f - 0.25f) * M_PI_DOUBLE;
 
