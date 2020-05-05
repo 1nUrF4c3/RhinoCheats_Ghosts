@@ -57,6 +57,7 @@ namespace RhinoCheats
 			vCommands.push_back("rc_spawnbot");
 			vCommands.push_back("rc_enableai");
 			vCommands.push_back("rc_infinite");
+			vCommands.push_back("rc_disconnect");
 
 			AddLog("Ready.");
 
@@ -150,6 +151,7 @@ namespace RhinoCheats
 			AddLog("23. rc_spawnbot <max|number>\n\t\tSpawn bots into the current match (as host).");
 			AddLog("24. rc_enableai <on|off>\n\t\tEnable/disable AI system for bots in public match (as host).");
 			AddLog("25. rc_infinite\n\t\tSet scorelimit and timelimit to unlimited (as host).");
+			AddLog("26. rc_disconnect\n\t\tDisconnect from the current session.");
 
 			bWriteLog = true;
 		} ImGui::SameLine();
@@ -1520,6 +1522,16 @@ namespace RhinoCheats
 			Cbuf_AddText(VariadicText("scr_%s_timelimit 0\n", FindVariable("g_gametype")->Current.szValue));
 
 			AddLog("Score/time limit has been set to unlimited.");
+			AddLog("%s executed.", acut::ToLower(CmdLine.szCmdName).c_str());
+		}
+
+		else if (!Stricmp(CmdLine.szCmdName, "rc_disconnect"))
+		{
+			AddLog("%s executing.", acut::ToLower(CmdLine.szCmdName).c_str());
+
+			Cbuf_AddText("disconnect\n");
+
+			AddLog("Disconnected from the game session.");
 			AddLog("%s executed.", acut::ToLower(CmdLine.szCmdName).c_str());
 		}
 

@@ -170,7 +170,6 @@ namespace RhinoCheats
 	void cHost::SpawnBots(int count)
 	{
 		int iCurrentIndex = 0;
-		std::vector<sGEntity*> vSpawnedBots;
 
 		auto AddEntities = [&]()
 		{

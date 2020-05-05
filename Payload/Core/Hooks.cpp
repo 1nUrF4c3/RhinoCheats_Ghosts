@@ -72,7 +72,7 @@ namespace RhinoCheats
 	/*
 	//=====================================================================================
 	*/
-	void cHooks::BulletFirePenetrate(int* seed, sBulletFireParams* bp, sBulletTraceResults* br, int weapon, bool alternate, sGEntity* attacker, int servertime)
+	void cHooks::BulletFirePenetrate(int* seed, sBulletFireParams* bp, sBulletTraceResults* br, int weapon, bool alternate, sCEntity* attacker, int servertime)
 	{
 		if (LocalClientIsInGame())
 		{
@@ -103,6 +103,7 @@ namespace RhinoCheats
 			{
 				if (sourcenum == CG->PlayerState.iClientNum &&
 					_targetList.EntityIsEnemy(targetnum) &&
+					_aimBot.AimState.bIsAutoFiring &&
 					(CEntity[targetnum].NextEntityState.iEntityType == ET_PLAYER ||
 					(_profiler.gTargetMissiles->Current.bValue && CEntity[targetnum].NextEntityState.iEntityType == ET_MISSILE &&
 					(CEntity[targetnum].NextEntityState.iWeapon == WEAPON_C4 || CEntity[targetnum].NextEntityState.iWeapon == WEAPON_IED)) ||
@@ -114,7 +115,7 @@ namespace RhinoCheats
 					sOrientation Orientation;
 					sUserCmd* pUserCmd = ClientActive->GetUserCmd(ClientActive->iCurrentCmd - !WeaponIsVehicle(GetViewmodelWeapon(&CG->PlayerState)));
 
-					if (GetTagOrientation((int)(WeaponIsAkimbo(GetViewmodelWeapon(&CG->PlayerState)) && pUserCmd->iButtons & (IsGamePadEnabled() ? BUTTON_FIRERIGHT : BUTTON_FIRELEFT)) + 2048, RegisterTag("tag_flash"), &Orientation))
+					if (GetTagOrientation((WeaponIsAkimbo(GetViewmodelWeapon(&CG->PlayerState)) && pUserCmd->iButtons & (IsGamePadEnabled() ? BUTTON_FIRERIGHT : BUTTON_FIRELEFT)) + 2048, RegisterTag("tag_flash"), &Orientation))
 					{
 						cDrawing::sTracer Tracer;
 
@@ -150,6 +151,7 @@ namespace RhinoCheats
 				{
 					CharacterInfo[entity->NextEntityState.iEntityNum].vViewAngles[0] = _antiAim.vAntiAimAngles[0] + CG->PlayerState.vDeltaAngles[0];
 					entity->vViewAngles[1] = _antiAim.vAntiAimAngles[1] + CG->PlayerState.vDeltaAngles[1];
+					entity->vViewAngles[2] = _antiAim.vAntiAimAngles[2] + CG->PlayerState.vDeltaAngles[2];
 				}
 			}
 		}
