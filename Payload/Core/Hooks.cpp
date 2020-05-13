@@ -155,8 +155,8 @@ namespace RhinoCheats
 				}
 			}
 
-			_targetList.ApplyPositionPrediction(entity);
-			_targetList.ApplyAnglePrediction(entity);
+			_mathematics.ApplyPositionPrediction(entity);
+			_mathematics.ApplyAnglePrediction(entity);
 		}
 	}
 	/*
